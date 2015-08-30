@@ -3,12 +3,12 @@ angular.module('alurapic').controller('FotoController', function($scope, $http, 
 	$scope.foto = {};
 	$scope.mensagem={};
 
-	if($routeParams.fotoId){
- 		$http.get('v1/fotos/' + $routeParams.fotoId).success(function(foto){
+	if($routeParams.foto_id){
+ 		$http.get('v1/fotos/' + $routeParams.foto_id).success(function(foto){
  			$scope.foto = foto;
  		}).error(function(erro){
  			console.log(erro);
- 			$scope.mensagem = "Não foi possível obter a foto de ID ";
+ 			$scope.mensagem = "Não foi possível obter a foto!  ";
  		});
  	}
 
@@ -16,7 +16,7 @@ angular.module('alurapic').controller('FotoController', function($scope, $http, 
 
 		$scope.submeter = function(){
 			if ($scope.formulario.$valid){
-				if ($routeParams.fotoId) {
+				if ($routeParams.foto_id) {
 				$http.put('/v1/fotos/' + $scope.foto._id, $scope.foto).success(function(){
 					$scope.mensagem = "Foto alterada com sucesso!";
 				}).error(function(erro){
